@@ -1,4 +1,9 @@
 from django.contrib import admin
-from .models import WhyAi
+from .models import *
 
-admin.site.register(WhyAi)
+All = [
+    OurService,
+    WhyAi,
+]
+
+admin.site.register(All)

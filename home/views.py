@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .models import WhyAi
+from .models import *
 from django.views.generic import TemplateView
 
 from django.views.generic import TemplateView
 from .models import WhyAi
 
 
-class IndexView(TemplateView):
+class IndexView(TemplateView):  # render index.html and send data for it
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
@@ -15,4 +15,14 @@ class IndexView(TemplateView):
         # Fetch data from the WhyAi model and add it to the context
         context['data'] = WhyAi.objects.all()
 
+        return context
+
+
+class OurServiceView(TemplateView):  # send data for OurService.html in the includes
+    template_name = 'includes/Our-service.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        context['data'] = OurService.objects.all()
         return context

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load render_partial %}
 {% load static %}
 
 {% block contact %}
@@ -67,7 +68,7 @@
         </section><!-- End Why Choose Us Section -->
 
         <!-- ======= Our Services Section ======= -->
-        {% include 'includes/Our-service.html' %}
+        {% render_partial 'home_app:OurService_partial' %}
         <!-- End Our Services Section -->
 
         <!-- ======= Call To Action Section ======= -->
