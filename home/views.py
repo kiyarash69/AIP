@@ -26,3 +26,13 @@ class OurServiceView(TemplateView):  # send data for OurService.html in the incl
 
         context['data'] = OurService.objects.all()
         return context
+
+
+class DailyNewsView(TemplateView):   # for send data to includes/DailyNews.html
+    template_name = 'includes/DailyNews.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        context['data'] = DailyNews.objects.all()
+        return context

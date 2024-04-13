@@ -4,5 +4,7 @@ from .views import *
 app_name = 'home_app'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),  # this address is for Index.html
-    path('Ourservice', OurServiceView.as_view(), name='OurService_partial'),  # this address is for includes/OurService.html
+    path('Ourservice', OurServiceView.as_view(), name='OurService_partial'),
+    # this address is for includes/OurService.html
+    path('DailyNews', DailyNewsView.as_view(), name='DailyNews_partial'),  # this address is for includes/DailyNews.html
 ]

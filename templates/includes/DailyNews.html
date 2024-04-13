@@ -1,0 +1,63 @@
+{% load static %}
+<section id="recent-posts" class="recent-posts">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2> daily news </h2>
+
+        </div>
+
+        <div class="row gy-5">
+
+            <style>
+                .post-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .post-box {
+                    flex: 1 1 300px; /* Adjust width as needed */
+                    margin: 15px;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    transition: transform 0.3s ease;
+                }
+
+                .post-box:hover {
+                    transform: translateY(-5px);
+                }
+
+                .post-box img {
+                    width: 100%;
+                    height: auto;
+                }
+
+                .post-content {
+                    padding: 15px;
+                }
+            </style>
+
+            <div class="post-wrapper">
+                {% for datum in data %}
+                    <div class="post-box" data-aos="fade-up" data-aos-delay="100">
+                        <img src="{{ datum.image.url }}" class="img-fluid" alt="{{ datum.title }}">
+                        <div class="post-content">
+                            <div class="meta">
+                                <span class="post-date">{{ datum.create_at.day }}, {{ datum.create_at|date:"E" }} {{ datum.create_at.year }}</span>
+                                <span class="post-author"> / {{ datum.author.get_full_name }}</span>
+                            </div>
+                            <h3 class="post-title">{{ datum.title }}</h3>
+                            <p>{{ datum.description|truncatewords:35 }}</p>
+                            <a href="blog-details.html" class="readmore"><span>Read More</span><i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+
+    </div>
+</section>

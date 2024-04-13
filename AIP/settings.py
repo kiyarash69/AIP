@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
 
     # frameworks
-    'django_render_partial'
+    'django_render_partial',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,10 @@ USE_TZ = True
 STATIC_URL = '/assets/'
 
 STATICFILES_DIRS = [BASE_DIR / 'assets']
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
