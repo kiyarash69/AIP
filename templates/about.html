@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contact %}
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs d-flex align-items-center"
+             style="background-image: url('{% static 'assets/img/about-header.png' %}');">
+            <div class="container position-relative d-flex flex-column align-items-center">
+
+                <h2>About</h2>
+                <ol>
+                    <li><a href="{% url 'home_app:index' %}">Home</a></li>
+                    <li>About</li>
+                </ol>
+
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row gy-4" data-aos="fade-up">
+                    <div class="col-lg-4">
+                        <img src="{% static 'assets/img/about-2-section.jpg' %}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="content ps-lg-5">
+                            <h3>Why is Now the Perfect Time to Talk About Artificial Intelligence</h3>
+                            <p>
+                                The convergence of significant technological advancements and the abundance of data has
+                                created an opportune moment for discussing artificial intelligence. Its potential
+                                impacts across various societal domains, from enhancing healthcare services to reshaping
+                                transportation, warrant active scrutiny and dialogue.
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i> Efficiency Boost: AI streamlines processes
+                                    and tasks, automating repetitive activities to save time and resources.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i> Decision Support: AI analyzes vast amounts
+                                    of data swiftly, providing valuable insights to aid in informed decision-making.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i> Innovation Catalyst: AI fosters
+                                    groundbreaking innovations by enabling the development of new products, services,
+                                    and solutions that were previously unattainable.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+
+        <!-- ======= Why Choose Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>Why artificial intelligence</h2>
+
+                </div>
+
+                <div class="row g-0" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="col-xl-5 img-bg"
+                         style="background-image: url('{% static 'assets/img/Ai_icon.webp' %}')"></div>
+                    <div class="col-xl-7 slides  position-relative">
+
+                        <div class="slides-1 swiper">
+                            <div class="swiper-wrapper">
+
+                                {% for datum in data %}
+                                    <div class="swiper-slide">
+                                        <div class="item">
+                                            <h3 class="mb-3">{{ datum.title }}</h3>
+
+                                            <p>{{ datum.description }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Why Choose Us Section -->
+
+        <!-- ======= Call To Action Section ======= -->
+        <section id="call-to-action" class="call-to-action">
+            <div class="container" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <h3>Artificial intelligence is a big world
+                        </h3>
+                        <p>Artificial intelligence (AI) is the development of computer systems that can perform tasks
+                            that typically require human intelligence.</p>
+                        <a class="cta-btn" href="#">Go to details</a>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Call To Action Section -->
+
+        <!-- ======= Team Section ======= -->
+        <section id="team" class="team">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>created by</h2>
+
+                </div>
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-member">
+                            <div class="member-img">
+                                <img src="{{ profile.image.url }}" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href="{{ profile.linkedin }}"><i class="bi bi-linkedin"></i></a>
+                                    <a href="{{ profile.telegram }}"><i class="bi bi-telegram"></i></a>
+                                    <a href="{{ profile.whatsapp }}"><i class="bi bi-whatsapp"></i></a>
+                                    <a href="{{ profile.gmail }}"><i class="bi bi-google"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>{{ profile.user.username }}</h4>
+                                <!-- Display other profile information if needed -->
+                                <span>{{ profile.skills }}</span>
+                                <!-- Display skills or any other relevant information -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Team Section -->
+
+    </main>
+{% endblock %}

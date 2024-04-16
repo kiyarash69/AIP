@@ -59,8 +59,14 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li >
+                    <a class="nav-item {% if request.resolver_match.url_name == 'index' %}
+                    	active
+                    {% endif %} " href="{% url 'home_app:index' %}">home</a>
+                </li>
+                <li><a class="nav-item {% if request.resolver_match.url_name == 'about' %}
+                	active
+                {% endif %} " href="{% url 'home_app:about' %}">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="team.html">Team</a></li>
