@@ -59,7 +59,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li >
+                <li>
                     <a class="nav-item {% if request.resolver_match.url_name == 'index' %}
                     	active
                     {% endif %} " href="{% url 'home_app:index' %}">home</a>
@@ -67,7 +67,9 @@
                 <li><a class="nav-item {% if request.resolver_match.url_name == 'about' %}
                 	active
                 {% endif %} " href="{% url 'home_app:about' %}">About</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li>
+                    <a class="nav-item {% if request.resolver_match.url_name == 'services_main_page' %}active{% endif %}"
+                       href="{% url 'services_app:services_main_page' %}">Services</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="team.html">Team</a></li>
                 <li><a href="blog.html">Blog</a></li>
