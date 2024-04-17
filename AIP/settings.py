@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # apps
     'home.apps.HomeConfig',
     'services.apps.ServicesConfig',
+    'blog.apps.BlogConfig',
 
     # frameworks
     'django_render_partial',

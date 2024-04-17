@@ -6,6 +6,7 @@ All = [
     WhyAi,
     DailyNews,
     Profile,
+
 ]
 
 admin.site.register(All)
