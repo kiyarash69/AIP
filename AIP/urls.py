@@ -6,6 +6,6 @@ from django.conf.urls.static import static
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('home.urls')),  # this address is for home app
-                  path('services', include('services.urls')),  # this address is for services app
+                  path('services/', include('services.urls')),  # this address is for services app
                   path('blog/', include('blog.urls'))  # this address is for blog app
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

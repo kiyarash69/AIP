@@ -1,16 +1,20 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from home.models import OurService
-from .models import InnovationModel
+from django.views.generic import TemplateView, DetailView
+from .models import InnovationModel, Service
 
 
-class CoursesView(TemplateView):
+class ServiceClassView(TemplateView):
     template_name = 'services.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['courses'] = OurService.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['courses'] = Service.objects.all()
         return context
+
+
+class ServiceDetailView(DetailView):
+    model = Service
+    template_name = 'service_detail.html'
 
 
 class InnovationClassView(TemplateView):

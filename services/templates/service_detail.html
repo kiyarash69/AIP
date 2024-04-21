@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contact %}
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs d-flex align-items-center"
+             style="background-image: url({% static 'assets/img/service-top-image.jpg' %});">
+            <div class="container position-relative d-flex flex-column align-items-center">
+
+                <h2>Portfolio Details</h2>
+                <ol>
+                    <li><a href="{% url 'home_app:index' %}">Home</a></li>
+                    <li>Portfolio Details</li>
+                </ol>
+
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-8"{% static 'assets/img/services-header.jpg' %}>
+                        <div class="slides-1 portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                <div class="swiper-slide">
+                                    <img src="{{ object.image.url }}" alt="">
+                                </div>
+                                
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="portfolio-info">
+                            <h3>Project information</h3>
+                            <ul>
+                                <li><strong>Category</strong>: Artificial intelligence</li>
+                                <li><strong>Client</strong>: Fans of artificial intelligence</li>
+                                <li><strong>Project date</strong>: 01 April, 2024</li>
+                                <li><strong>Project URL</strong>: <a href="#">Artificial-Intelligence.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="portfolio-description">
+                            <h2>This is a service about {{ service.title }}</h2>
+                            <p>
+                                {{ object.description }}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Details Section -->
+
+    </main>
+{% endblock %}

@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-xl-7 d-flex align-items-center">
                                         <div class="card-body">
-                                            <h4 class="card-title">{{ data.title }}</h4>
+                                            <h4 class="card-title"><a href="{% url 'services_app:detail' data.slug %}">{{ data.title }}</a></h4>
                                             <p>{{ data.description|truncatewords_html:20 }} <span class="tooltip">[Hover for full description]</span>
                                             </p>
 
