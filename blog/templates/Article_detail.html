@@ -66,24 +66,23 @@
                             </div><!-- End meta bottom -->
 
                         </article><!-- End blog post -->
+
+
                         <div class="post-author d-flex align-items-center">
-                            <img src="{{ info. }}" class="rounded-circle flex-shrink-0" alt="">
+                            <img src="{{ profile.image.url }}" class="rounded-circle flex-shrink-0" alt="">
                             <div>
-                                <h4>{{ info.about_me }}</h4> <!-- Access the username through 'user' attribute -->
+                                <h4>{{ profile.username }}</h4>
                                 <div class="social-links">
-                                    <a href="https://twitter.com/{{ info.user.username }}"><i class="bi bi-twitter"></i></a>
-                                    <a href="https://facebook.com/{{ info.user.username }}"><i
-                                            class="bi bi-facebook"></i></a>
-                                    <a href="https://instagram.com/{{ info.user.username }}"><i
-                                            class="bi bi-instagram"></i></a>
+                                    <a href="{{ profile.linkedin }}"><i class=" bi bi-linkedin"></i></a>
+                                    <a href="{{ profile.gmail }}"><i class=" bi bi-google"></i></a>
+                                    <a href="{{ profile.telegram }}"><i class="biu bi-telegram"></i></a>
                                 </div>
                                 <p>
-                                    Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus
-                                    accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse
-                                    et accusantium ut unde voluptas.
+                                    {{ profile.about_me }}
                                 </p>
                             </div>
-                        </div><!-- End post author -->
+                        </div>
+                        <!-- End post author -->
 
 
                         <div class="comments">
