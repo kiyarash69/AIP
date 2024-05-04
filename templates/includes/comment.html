@@ -1,0 +1,90 @@
+{% load static %}
+<div class="comments">
+    <h4 class="comments-count">{{ article.comments.all.count }} Comments</h4>
+
+    {% for comment in article.comments.all %}
+        <div id="comment-{{ comment.id }}" class="comment">
+            {% if comment.parent is None %}
+                <div class="d-flex">
+                    <div class="comment-img">
+                        {% if comment.user.profiles.image %}
+                            <img class="rounded-circle" style="width: 60px; height: 60px;"
+                                 src="{{ comment.user.profiles.image.url }}" alt="User Image">
+                        {% else %}
+                            <img class="rounded-circle" style="width: 60px; height: 60px;"
+                                 src="{% static 'assets/img/default.jpg' %}" alt="Default Image">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h5><a href="#">{{ comment.user.username }}</a> <a onclick="set_value({{ comment.id }})"
+                                                                           class="reply"><i
+                                class="bi bi-reply-fill"></i>Reply</a></h5>
+                        <time datetime="{{ comment.create_on }}">{{ comment.create_on }}</time>
+                        <p>{{ comment.body }}</p>
+                    </div>
+                </div>
+
+                <!-- This is a reply -->
+                {% for reply in comment.replies.all %}
+                    <div id="comment-reply-{{ reply.id }}" class="comment comment-reply">
+                        <div class="d-flex">
+                            <div class="comment-img">
+                                {% if reply.user.profiles.image %}
+                                    <img class="rounded-circle" style="width: 60px; height: 60px;"
+                                         src="{{ reply.user.profiles.image.url }}" alt="User Image">
+                                {% else %}
+                                    <img class="rounded-circle" style="width: 60px; height: 60px;"
+                                         src="{% static 'assets/img/default.jpg' %}" alt="Default Image">
+                                {% endif %}
+                            </div>
+
+                            <div>
+                                <h5><a href="#">{{ reply.user.username }}</a></h5>
+                                <time datetime="{{ reply.create_on }}">{{ reply.create_on }}</time>
+                                <p>{{ reply.body }}</p> <!-- Corrected this line -->
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+    {% endfor %}
+
+
+    {% if user.is_authenticated %}
+        <div class="reply-form">
+            <h4>Leave your comment</h4>
+            <p>Your email address will not be published. Required fields are marked </p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div>
+                    <input type="hidden" name="parent_comment_id" id="parent_comment_id" value="">
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                        <textarea name="body" id="body" class="form-control" placeholder="Your Comment"
+                                  required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+    {% else %}
+        <br>
+        <div>
+            <a class="btn btn-outline-danger" href="http://127.0.0.1:8000/admin/">You must first log in before you can
+                leave a comment !!!</a>
+        </div>
+    {% endif %}
+
+
+</div>
+
+<script>
+    function set_value(id) {
+        document.getElementById('parent_comment_id').value = id;
+        window.location.href = '#body'
+    }
+
+</script>

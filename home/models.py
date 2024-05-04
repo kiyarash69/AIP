@@ -44,7 +44,7 @@ SKILLS_CHOICES = [
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profiles')
     image = models.ImageField(upload_to='profile_images/')
     about_me = models.TextField()
     skills = models.CharField(max_length=50, choices=SKILLS_CHOICES)

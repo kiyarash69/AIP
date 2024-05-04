@@ -38,7 +38,7 @@
                                         </div>
 
                                         <h2 class="title">
-                                            <a href="blog-details.html">{{ object.title }}</a>
+                                            <a href="{% url 'blog-app:detail-page-blog' object.slug %}">{{ object.title }}</a>
                                         </h2>
 
                                         <div class="meta-top">
@@ -74,11 +74,21 @@
 
                         <div class="blog-pagination">
                             <ul class="justify-content-center">
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
+                                {% if page_obj.has_previous %}
+                                    <li><a href="?page=1">&laquo;&laquo;</a></li>
+                                    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                {% endif %}
+
+                                <li class="active"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+
+                                {% if page_obj.has_next %}
+                                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                    <li><a href="?page={{ page_obj.paginator.num_pages }}">&raquo;&raquo;</a></li>
+                                {% endif %}
                             </ul>
-                        </div><!-- End blog pagination -->
+                        </div>
+
+                        <!-- End blog pagination -->
 
                     </div>
 

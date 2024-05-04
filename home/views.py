@@ -51,20 +51,24 @@ class FooterView(TemplateView):  # send data for footer.html in the includes
 # <=====================================================================================================================>
 
 
+from django.contrib.auth.models import User
+
+
 class AboutClassView(TemplateView):
     template_name = 'about.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Retrieve profile data
-        try:
-            profile = Profile.objects.get(user=self.request.user)
-            context['profile'] = profile
-        except Profile.DoesNotExist:
+        if self.request.user.is_authenticated:
+            try:
+                profile = Profile.objects.get(user=self.request.user)
+                context['profile'] = profile
+            except Profile.DoesNotExist:
+                context['profile'] = None
+        else:
             context['profile'] = None
 
-        # Retrieve data from WhyAi model
         context['data'] = WhyAi.objects.all()
 
         return context

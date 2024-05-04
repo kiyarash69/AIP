@@ -14,3 +14,18 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title[:30]
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    body = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', null=True, blank=True)
+    create_on = models.DateTimeField(auto_now_add=True, verbose_name="Created On")
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['create_on']
+
+    def __str__(self):
+        return 'Comment "{}" by {}'.format(self.body, self.user)
