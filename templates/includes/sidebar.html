@@ -1,0 +1,71 @@
+{% load static %}
+<div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+
+    <div class="sidebar ps-lg-4">
+
+        <div class="sidebar-item search-form">
+            <h3 class="sidebar-title">Search</h3>
+            <form action="" class="mt-3">
+                <input type="text">
+                <button type="submit"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End sidebar search formn-->
+
+
+        <div class="sidebar-item categories">
+            <h3 class="sidebar-title">Our Service</h3>
+            <ul class="mt-3">
+                {% for our_ in our_service %}
+                    <li><a href="{% url 'home_app:index' %}">{{ our_.title }} <span></span></a></li>
+                    <br>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <!-- End sidebar categories-->
+
+        <div class="sidebar-item recent-posts">
+            <h3 class="sidebar-title">Recent Posts</h3>
+
+            <div class="mt-3">
+
+
+                {% for recent in recent_article %}
+                    <div class="post-item">
+                        <img style="width: 80px ; height: 60px" src="{{ recent.image.url }}" alt=""
+                             class="flex-shrink-0">
+                        <div>
+                            <h4><a href="{% url 'blog-app:detail-page-blog' recent.slug %}">{{ recent.title }}</a></h4>
+                            <time datetime="2020-01-01">{{ recent.updated_at }}</time>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div><!-- End sidebar recent posts-->
+
+        <div class="sidebar-item tags">
+            <h3 class="sidebar-title">Tags</h3>
+            <ul class="mt-3">
+                {% for recent_article in recent_article %}
+                	<li><a href="{% url 'blog-app:detail-page-blog' recent_article.slug %}">{{ recent_article.short_name }}</a></li>
+                {% endfor %}
+
+                <li><a href="#">IT</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Office</a></li>
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Studio</a></li>
+                <li><a href="#">Smart</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+            </ul>
+        </div><!-- End sidebar tags-->
+
+    </div><!-- End Blog Sidebar -->
+
+</div>
