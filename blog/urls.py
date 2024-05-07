@@ -9,4 +9,7 @@ urlpatterns = [
     path(
         'detail/<slug:slug>', BlogDetailClassView.as_view(), name='detail-page-blog'
     ),
+    path(
+        'search', SearchArticleListView.as_view(), name='search'
+    )
 ]

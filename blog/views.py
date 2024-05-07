@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from home.models import Profile
 from django.views.generic import DetailView, ListView
@@ -11,9 +11,6 @@ class BlogClassView(ListView):
     model = Article
     template_name = 'blog.html'
     paginate_by = 2
-
-
-from django.shortcuts import redirect
 
 
 class BlogDetailClassView(DetailView):
@@ -47,3 +44,26 @@ class BlogDetailClassView(DetailView):
             pass
 
         return redirect(reverse('blog-app:detail-page-blog', kwargs={'slug': article.slug}))
+
+
+class SearchArticleListView(ListView):
+    model = Article
+    template_name = 'blog.html'
+    context_object_name = 'object_list'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Article.objects.filter(title__icontains=query)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q', '')
+        context['search_query'] = query
+        return context
+
+    def get_template_names(self):
+        queryset = self.get_queryset()
+        if not queryset.exists():
+            return ['error.html']  # Template for no results
+        else:
+            return [self.template_name]

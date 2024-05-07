@@ -76,14 +76,14 @@
                             <ul class="justify-content-center">
                                 {% if page_obj.has_previous %}
                                     <li><a href="?page=1">&laquo;&laquo;</a></li>
-                                    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                    <li><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a></li>
                                 {% endif %}
 
-                                <li class="active"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+                                <li class="active"><a href="?page={{ page_obj.number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page_obj.number }}</a></li>
 
                                 {% if page_obj.has_next %}
-                                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-                                    <li><a href="?page={{ page_obj.paginator.num_pages }}">&raquo;&raquo;</a></li>
+                                    <li><a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a></li>
+                                    <li><a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;&raquo;</a></li>
                                 {% endif %}
                             </ul>
                         </div>
