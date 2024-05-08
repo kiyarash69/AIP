@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contact %}
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('{% static 'assets/img/team-header.jpg' %}');">
+            <div class="container position-relative d-flex flex-column align-items-center">
+
+                <h2>Team</h2>
+                <ol>
+                    <li><a href="{% url 'home_app:index' %}">Home</a></li>
+                    <li>Team</li>
+                </ol>
+
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <!-- ======= Team Section ======= -->
+        <section id="team" class="team">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>Our Team</h2>
+
+                </div>
+
+                <div class="row gy-4">
+
+                    {% for datum in data %}
+                    	<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-member">
+                            <div class="member-img">
+                                <img style="width: 336px ; height: 336px" src="{{ datum.image.url }}" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href="{{ datum.telegram }}"><i class="bi bi-telegram"></i></a>
+                                    <a href="{{ datum.whatsapp }}"><i class="bi bi-whatsapp"></i></a>
+                                    <a href="{{ datum.gmail }}"><i class="bi bi-google"></i></a>
+                                    <a href="{{ datum.linkedin }}"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>{{ datum.user.get_full_name }}</h4>
+                                <span>{{ datum.skills }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+        </section><!-- End Team Section -->
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

@@ -116,31 +116,34 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>created by</h2>
+                    <h2>Our team </h2>
 
                 </div>
 
                 <div class="row gy-4">
 
-                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-member">
-                            <div class="member-img">
-                                <img src="{{ profile.image.url }}" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href="{{ profile.linkedin }}"><i class="bi bi-linkedin"></i></a>
-                                    <a href="{{ profile.telegram }}"><i class="bi bi-telegram"></i></a>
-                                    <a href="{{ profile.whatsapp }}"><i class="bi bi-whatsapp"></i></a>
-                                    <a href="{{ profile.gmail }}"><i class="bi bi-google"></i></a>
+                    {% for profile in profile %}
+                        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member">
+                                <div class="member-img">
+                                    <img style="width: 800px; height: 399px " src="{{ profile.image.url }}" class="img-fluid" alt="">
+                                    <div class="social">
+                                        <a href="{{ profile.linkedin }}"><i class="bi bi-linkedin"></i></a>
+                                        <a href="{{ profile.telegram }}"><i class="bi bi-telegram"></i></a>
+                                        <a href="{{ profile.whatsapp }}"><i class="bi bi-whatsapp"></i></a>
+                                        <a href="{{ profile.gmail }}"><i class="bi bi-google"></i></a>
+                                    </div>
+                                </div>
+                                <div class="member-info">
+                                    <h4>{{ profile.user.username }}</h4>
+                                    <!-- Display other profile information if needed -->
+                                    <span>{{ profile.skills }}</span>
+                                    <!-- Display skills or any other relevant information -->
                                 </div>
                             </div>
-                            <div class="member-info">
-                                <h4>{{ profile.user.username }}</h4>
-                                <!-- Display other profile information if needed -->
-                                <span>{{ profile.skills }}</span>
-                                <!-- Display skills or any other relevant information -->
-                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
+
 
                 </div>
 

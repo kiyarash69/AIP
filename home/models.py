@@ -40,6 +40,8 @@ SKILLS_CHOICES = [
     ('git', 'Git'),
     ('python', 'Python'),
     ('machine_learning', 'Machine Learning'),
+    ('FrontEnd', 'Front End'),
+    ('BackEnd', 'Back End'),
 ]
 
 
@@ -58,3 +60,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"Profile of {self.user.username}"
+
+
+class ContactModel(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    title = models.CharField(max_length=50)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"contact of {self.name}"

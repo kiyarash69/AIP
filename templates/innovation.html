@@ -7,13 +7,13 @@
 
         <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs d-flex align-items-center"
-             style="background-image: url('assets/img/portfolio-header.jpg');">
+             style="background-image: url('{% static 'assets/img/portfolio-header.jpg' %}');">
             <div class="container position-relative d-flex flex-column align-items-center">
 
                 <h2>Portfolio</h2>
                 <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Portfolio</li>
+                    <li><a href="{% url 'home_app:index' %}">Home</a></li>
+                    <li>Innovation</li>
                 </ol>
 
             </div>

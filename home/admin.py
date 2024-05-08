@@ -6,7 +6,7 @@ All = [
     WhyAi,
     DailyNews,
     Profile,
-
+    ContactModel,
 ]
 
 admin.site.register(All)
