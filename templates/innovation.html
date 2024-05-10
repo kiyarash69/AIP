@@ -10,7 +10,7 @@
              style="background-image: url('{% static 'assets/img/portfolio-header.jpg' %}');">
             <div class="container position-relative d-flex flex-column align-items-center">
 
-                <h2>Portfolio</h2>
+                <h2>Innovation</h2>
                 <ol>
                     <li><a href="{% url 'home_app:index' %}">Home</a></li>
                     <li>Innovation</li>
@@ -27,12 +27,22 @@
                      data-portfolio-sort="original-order">
 
                     <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
-                        <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-app">App</li>
-                        <li data-filter=".filter-product">Product</li>
-                        <li data-filter=".filter-branding">Branding</li>
-                        <li data-filter=".filter-books">Books</li>
+                        <li><a href="?category="
+                               class="{% if not request.GET.category %}filter-active{% endif %}">All</a></li>
+                        <li><a href="?category=finance"
+                               class="{% if request.GET.category == 'finance' %}filter-active{% endif %}">Finance</a>
+                        </li>
+                        <li><a href="?category=machine-learning"
+                               class="{% if request.GET.category == 'machine-learning' %}filter-active{% endif %}">Machine
+                            Learning</a></li>
+                        <li><a href="?category=robotic"
+                               class="{% if request.GET.category == 'robotic' %}filter-active{% endif %}">Robotic</a>
+                        </li>
+                        <li><a href="?category=search-AI"
+                               class="{% if request.GET.category == 'search-AI' %}filter-active{% endif %}">Search
+                            AI</a></li>
                     </ul><!-- End Portfolio Filters -->
+
 
                     <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="300">
 
@@ -54,11 +64,34 @@
 
 
                     </div><!-- End Portfolio Container -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const filters = document.querySelectorAll('.portfolio-flters li');
+
+                            filters.forEach(filter => {
+                                filter.addEventListener('click', function () {
+                                    filters.forEach(f => f.classList.remove('filter-active'));
+                                    this.classList.add('filter-active');
+
+                                    const selectedFilter = this.getAttribute('data-filter');
+                                    const itemsToDisplay = document.querySelectorAll('.portfolio-item');
+
+                                    itemsToDisplay.forEach(item => {
+                                        item.style.display = 'none';
+                                        if (selectedFilter === '*' || item.classList.contains(selectedFilter)) {
+                                            item.style.display = 'block';
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                    </script>
 
                 </div>
 
             </div>
         </section><!-- End Portfolio Section -->
+
 
     </main><!-- End #main -->
 

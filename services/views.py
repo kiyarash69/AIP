@@ -17,10 +17,28 @@ class ServiceDetailView(DetailView):
     template_name = 'service_detail.html'
 
 
+# class InnovationClassView(TemplateView):
+#     template_name = 'innovation.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data()
+#         context['data'] = InnovationModel.objects.all()
+#         return context
+
 class InnovationClassView(TemplateView):
     template_name = 'innovation.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['data'] = InnovationModel.objects.all()
+        context = super().get_context_data(**kwargs)
+
+        # Get the filter category from the URL or request parameters
+        filter_category = self.request.GET.get('category')
+
+        # Filter data based on the selected category
+        if filter_category:
+            context['data'] = InnovationModel.objects.filter(filter=filter_category)
+        else:
+            context['data'] = InnovationModel.objects.all()
+
         return context
+

@@ -27,9 +27,9 @@ print('-------------------------------------------------------------------------
 
 List = [
     ('finance', 'Finance'),
-    ('machin learning', 'Machin learning'),
+    ('machine-learning', 'Machine-learning'),
     ('robotic', 'Robotic'),
-    ('search AI', 'Search AI'),
+    ('search-AI', 'Search AI'),
 ]
 
 
